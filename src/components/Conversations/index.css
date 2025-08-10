@@ -1,0 +1,57 @@
+.conversationsContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  background-color: #ffffff;
+  border-right: 1px solid #e0e0e0;
+  position: relative;
+}
+
+.conversationsList {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.encryptionFooter {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  font-size: 12px;
+  color: #666;
+  border-top: 1px solid #f0f0f0;
+  background-color: #f9f9f9;
+}
+
+.encryptionText {
+  display: inline;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.encryptionHighlight {
+  font-weight: 600;
+  color: #25d366;
+}
+
+.conversations-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #dcdcdc;
+}
+
+.conversations-header__title {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--cometchat-text-color-primary);
+}
+
+.chat-menu {
+  cursor: pointer;
+  color: var(--cometchat-text-color-primary);
+}

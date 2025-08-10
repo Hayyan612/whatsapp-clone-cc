@@ -1,0 +1,130 @@
+/* Action Footer */
+
+.add-member-overlay-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(255, 255, 255, 0.75);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+}
+
+.add-member-overlay-content {
+  width: 400px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  position: relative;
+}
+
+.add-member-overlay-header {
+  padding: 13px;
+  display: flex;
+  justify-content: center;
+  background-color: #008069;
+}
+
+.add-member-overlay-header h3 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 300;
+  color: #fff;
+}
+
+.close-btn {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  color: var(--cometchat-neutral-color-300);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease;
+}
+
+.close-btn .pi {
+  font-size: 20px;
+}
+
+.close-btn:hover {
+  color: var(--cometchat-neutral-color-500);
+}
+
+.action-footer {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  background-color: #f0f2f5;
+  border-top: 1px solid #e0e0e0;
+}
+
+.add-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 24px;
+  font-size: 15px;
+  font-weight: 500;
+  color: white;
+  background-color: #128c7e;
+  border: none;
+  border-radius: 24px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.add-button:hover {
+  background-color: #0e7263;
+}
+
+.add-button.disabled {
+  background-color: var(--cometchat-neutral-color-500);
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+.add-button.loading {
+  background-color: #78909c;
+  cursor: wait;
+}
+
+.add-button.success {
+  background-color: #4caf50;
+}
+
+.add-button i {
+  margin-right: 8px;
+}
+
+/* Spinner Animation for loading state */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.pi-spin {
+  animation: spin 1s linear infinite;
+}
+
+.add-member-users {
+  max-height: 500px;
+  width: 100%;
+  overflow-y: auto;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}

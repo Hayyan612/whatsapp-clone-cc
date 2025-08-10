@@ -1,0 +1,153 @@
+.wallpaper-settings {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  height: 100%;
+  overflow-y: auto;
+  min-width: 280px;
+  background-color: #ffffff;
+}
+
+.wallpaper-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 8px;
+  margin-right: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #202124;
+}
+
+.wallpaper-settings-title {
+  padding-top: 15px;
+  font-size: 18px;
+  font-weight: 400;
+  color: #202124;
+}
+
+.wallpaper-options {
+  margin-bottom: 20px;
+}
+
+.doodles-option {
+  margin-bottom: 24px;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.checkbox-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 20px;
+  width: 20px;
+  background-color: #fff;
+  border: 2px solid #128c7e;
+  border-radius: 3px;
+  margin-right: 10px;
+}
+
+.checkbox-container input:checked ~ .checkmark {
+  background-color: #128c7e;
+}
+
+.checkmark i {
+  color: white;
+  font-size: 14px;
+  display: none;
+}
+
+.checkbox-container input:checked ~ .checkmark i {
+  display: block;
+}
+
+.checkbox-label {
+  font-size: 14px;
+  color: #202124;
+}
+
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.color-option {
+  aspect-ratio: 1/1;
+  cursor: pointer;
+  border-radius: 4px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+.color-option:hover {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.color-option.selected {
+  box-shadow: 0 0 0 2px #128c7e, 0 0 0 4px rgba(18, 140, 126, 0.3);
+}
+
+.color-option.with-border {
+  border: 1px solid #dadce0;
+}
+
+.color-label {
+  font-size: 12px;
+  color: #5f6368;
+}
+
+.action-buttons {
+  margin-top: auto;
+  padding: 16px 0;
+}
+
+.apply-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #202124;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-bottom: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.apply-button:hover {
+  background-color: #303134;
+}
+
+.apply-button:active {
+  background-color: #000000;
+}

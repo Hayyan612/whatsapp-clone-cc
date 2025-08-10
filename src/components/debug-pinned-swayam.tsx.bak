@@ -1,0 +1,164 @@
+import React, { useEffect, useState } from "react";
+import {
+  CometChatMessageList,
+  CometChatUIKit,
+  CometChatUIKitConstants,
+} from "@cometchat/chat-uikit-react";
+import { CometChat } from "@cometchat/chat-sdk-javascript";
+
+// type PinnedMessage = {
+//   id: string;
+//   muid: string;
+//   conversationId: string;
+//   sender: { name: string };
+//   receiverType: string;
+//   receiver: string;
+//   category: string;
+//   type: string;
+//   data: { text: string };
+//   sentAt: number;
+//   updatedAt: number;
+//   receipts: any[];
+// };
+
+const TestMessageList = () => {
+  const [templates, setTemplates] = useState<any[]>([]);
+  const [pinnedMessages, setPinnedMessages] = useState<any>([]);
+  const [chatGroup, setChatGroup] = useState<any>(null);
+
+  useEffect(() => {
+    const GROUP_GUID = "cometchat-guid-1";
+    CometChat.getGroup(GROUP_GUID).then((group) => {
+      setChatGroup(group);
+    });
+  }, []);
+
+  const fetchPinnedMessages = async () => {
+    if (!chatGroup) return;
+    const URL = `v1/fetch?receiverType=group&receiver=${chatGroup.getGuid()}`;
+    
+    try {
+      const response = (await CometChat.callExtension("pin-message", "GET", URL, undefined));
+      console.log("Full response from pin-message fetch:", response);
+      setPinnedMessages(response);
+      
+    } catch (error) {
+      console.error("Error fetching pinned messages:", error);
+    }
+  };
+  useEffect(() => {
+    console.log("Updated pinnedMessages:", pinnedMessages);
+  }, [pinnedMessages]);
+  
+  useEffect(() => {
+    if (!chatGroup) return;
+
+    fetchPinnedMessages();
+
+    const definedTemplates = CometChatUIKit.getDataSource().getAllMessageTemplates();
+    const customTemplates = definedTemplates.map((template: any) => {
+      if (
+        template.type === CometChatUIKitConstants.MessageTypes.text &&
+        template.category === CometChatUIKitConstants.MessageCategory.message
+      ) {
+        template.headerView = (message: any) => getHeaderView(message);
+        template.bottomView = (message: any) => getBottomView(message);
+      }
+      return template;
+    });
+    setTemplates(customTemplates);
+  }, [chatGroup]);
+
+  const getHeaderView = (message: any) => {
+    const messageId = String(message.getId?.() ?? message.id);
+    const messageMuid = String(message.getMuid?.() ?? message.muid);
+    const senderName = message.getSender?.().getName?.() ?? message.sender?.name ?? "Unknown";
+  
+    const isPinned = pinnedMessages.some(
+      (msg: any) => {
+        console.log("msg.id", msg.id);
+
+        String(msg.id) === messageId 
+    });
+
+    console.log("Header message ID:", messageId);
+    console.log("Header message MUID:", messageMuid);
+    console.log(isPinned);
+    
+  
+    return (
+      <div className="message-header">
+        {isPinned && <span style={{ color: "orange" }}>📌 Pinned</span>}
+        {senderName}
+      </div>
+    );
+  };
+  
+  
+  
+  const getBottomView = (message: any) => {
+    const messageId = message.getId?.() ?? message.id;
+    
+    console.log("message id", messageId);
+    
+    const isPinned = message.getId()== message.Id
+    // console.log(isPinned);
+    
+    const handlePinToggle = async (e: React.MouseEvent) => {
+      e.stopPropagation();
+      try {
+        if (!isPinned) {
+          await CometChat.callExtension("pin-message", "POST", "v1/pin", {
+            msgId: messageId,
+          });
+        } else {
+          await CometChat.callExtension("pin-message", "DELETE", "v1/unpin", {
+            msgId: messageId,
+            receiverType: "group",
+            receiver: chatGroup.getGuid(),
+          });
+        }
+  
+        await fetchPinnedMessages();
+      } catch (err) {
+        console.error("Pin toggle failed", err);
+      }
+    };
+  
+    return (
+      <div className="message-actions">
+        <button onClick={handlePinToggle}>
+          {isPinned ? "Unpin" : "Pin"} Message
+        </button>
+      </div>
+    );
+  };
+  
+
+  return (
+    <div>
+      {/* Pinned Messages Section */}
+      <div className="pinned-messages">
+        <h3>Pinned Messages</h3>
+        {pinnedMessages.length > 0 ? (
+          pinnedMessages.map((msg: { id: React.Key | null | undefined; sender: { name: any; }; data: { text: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined; }; }) => (
+            <div key={msg.id} className="pinned-msg">
+              <strong>{msg.sender?.name || "User"}:</strong> {msg.data?.text}
+            </div>
+          ))
+        ) : (
+          <p>No pinned messages</p>
+        )}
+      </div>
+
+      {/* CometChat Message List */}
+      <div className="all-messages">
+        {chatGroup && (
+          <CometChatMessageList key={templates.length} group={chatGroup} templates={templates} />
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default TestMessageList;

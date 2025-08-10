@@ -1,0 +1,33 @@
+.threads-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+.thread-header {
+  padding: 8px;
+  border-bottom: 1px solid #e0e0e0;
+  background-color: #ffffff;
+}
+
+.thread-message-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px;
+  background-color: #fff;
+}
+
+/* Ensuring the message list takes up available space */
+.thread-message-list > div {
+  height: 100%;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+  .threads-container {
+    border-radius: 0;
+  }
+}

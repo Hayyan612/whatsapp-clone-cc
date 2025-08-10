@@ -1,0 +1,43 @@
+.homeContainer {
+  width: 97.5%;
+  height: 95%;
+  margin: auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  display: flex;
+  overflow: hidden;
+}
+.sidebar-container {
+  width: 4%;
+  min-width: 4%;
+  background-color: #ffffff;
+  border-right: 1px solid #e0e0e0;
+}
+
+.conversations {
+  width: 30%;
+  min-width: 300px;
+  max-width: 400px;
+  border-right: 1px solid #e0e0e0;
+  background-color: #fefefe;
+}
+
+.chat {
+  width: 70%;
+  background-color: #fff;
+}
+
+.chatInfo {
+  width: 40%;
+  min-width: 300px;
+  max-width: 400px;
+  border-left: 1px solid #e0e0e0;
+  background-color: #fefefe;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+.threads {
+  position: relative;
+  width: 40%;
+  border-right: 1px solid var(--cometchat-neutral-color-500);
+}

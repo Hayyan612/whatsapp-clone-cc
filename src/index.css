@@ -1,0 +1,251 @@
+@import url("../node_modules/@cometchat/chat-uikit-react/dist/styles/css-variables.css");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+  font-size: 14px;
+  color: #111b21;
+  /* color changes */
+  --cometchat-primary-color: #075e54;
+  --cometchat-extended-primary-color: #d9fdd3;
+  --cometchat-extended-primary-color-500: #90cda6;
+}
+
+button,
+input,
+textarea {
+  font-family: inherit;
+  font-size: 14px;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Outgoing message bubble (sent by user) */
+.cometchat .cometchat-message-bubble-outgoing .cometchat-message-bubble__body {
+  --cometchat-primary-color: #d9fdd3; /* Exact light green used by WhatsApp */
+  --cometchat-extended-primary-color-900: #d9fdd3; /* Same tone for consistency */
+  background-color: #d9fdd3 !important;
+  color: #111b21; /* WhatsApp uses dark text on light green */
+}
+
+/* Incoming message bubble (received from others) */
+.cometchat .cometchat-message-bubble-incoming .cometchat-message-bubble__body {
+  --cometchat-neutral-color-300: #ffffff; /* WhatsApp white background */
+  background-color: #ffffff !important;
+  color: #111b21; /* Dark text */
+}
+
+.cometchat-text-bubble.cometchat-text-bubble-outgoing
+  .cometchat-text-bubble__body-text {
+  color: var(--cometchat-static-dark);
+  font: var(--cometchat-font-body-regular);
+  font-style: normal;
+}
+.cometchat-message-bubble-outgoing
+  .cometchat-message-bubble__status-info-view
+  .cometchat-date {
+  color: var(--cometchat-neutral-color-600);
+  font: var(--cometchat-font-caption2-regular);
+}
+
+.cometchat-message-bubble__status-info-view-receipts-sent
+  .cometchat-message-list__receipt {
+  background: var(--cometchat-neutral-color-600);
+}
+
+.cometchat-message-list__bubble-date-header {
+  background-color: #e1f3fb;
+}
+.cometchat-message-list__date-header {
+  background-color: #e1f3fb;
+}
+.cometchat-audio-bubble__leading-view {
+  background-color: var(--cometchat-neutral-color-600);
+}
+
+.cometchat-audio-bubble__tail-view-download {
+  background-color: var(--cometchat-neutral-color-600);
+}
+.cometchat-audio-bubble__body-time {
+  color: var(--cometchat-neutral-color-600);
+}
+
+.cometchat-reactions__reaction-you {
+  border: 1px solid #90cda6;
+  background: var(--cometchat-neutral-color-300);
+}
+
+.cometchat-message-list__date-header {
+  border-radius: 10%;
+  color: var(--cometchat-neutral-color-600);
+}
+
+.cometchat-message-list__date-header .cometchat-date,
+.cometchat-message-list__bubble-date-header .cometchat-date {
+  color: var(--cometchat-neutral-color-600);
+}
+
+.cometchat-message-composer__send-button {
+  background-color: var(--cometchat-neutral-color-500);
+}
+
+.cometchat-message-bubble__status-info-view-receipts-read
+  .cometchat-message-list__receipt {
+  background: #34b7f1;
+}
+.cometchat-conversations__subtitle-receipts-read {
+  background: #34b7f1;
+}
+.cometchat-conversations__subtitle-receipts-delivered {
+  background: var(--cometchat-neutral-color-600);
+}
+.cometchat-message-bubble__status-info-view-receipts-delivered
+  .cometchat-message-list__receipt {
+  background: var(--cometchat-neutral-color-600);
+}
+.cometchat-conversations__trailing-view-badge-count {
+  background: #3adc3f;
+}
+.cometchat-conversations .cometchat-list-item {
+  padding: 10px 12px;
+}
+.cometchat-conversations .cometchat-menu-list__sub-menu-icon {
+  -webkit-mask: url(./assets/down-arrow.svg) center center no-repeat;
+  -webkit-mask-size: contain;
+}
+
+.dynamic-chat-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--doodle-image); /* if it's in public/ */
+  background-repeat: repeat;
+  background-size: 350px;
+  opacity: 0.1;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.dynamic-chat-bg {
+  position: relative;
+  z-index: 0;
+}
+
+.cometchat-delete-bubble-outgoing .cometchat-delete-bubble__text {
+  color: var(--cometchat-neutral-color-600);
+}
+.cometchat-delete-bubble-outgoing .cometchat-delete-bubble__icon {
+  background: var(--cometchat-neutral-color-600);
+}
+.cometchat-message-bubble__body {
+  display: flex;
+  flex-direction: row;
+  border-radius: var(--cometchat-radius-3, 12px);
+  gap: 4px;
+}
+
+.cometchat-text-bubble__body-text {
+  padding-bottom: 2px;
+  margin-bottom: 6px;
+}
+
+.cometchat-list-item__body-title {
+  font: var(--cometchat-font-body-regular);
+  color: var(--cometchat-static-dark);
+  font-weight: 400;
+}
+
+.cometchat-conversations .cometchat-date {
+  font: var(--cometchat-font-caption3-regular);
+  font-size: 11px;
+  font-weight: 400;
+}
+
+.cometchat-message-bubble .cometchat-delete-bubble {
+  padding-bottom: 4px;
+  margin-bottom: 4px;
+}
+.cometchat-audio-bubble {
+  padding-bottom: 4px;
+  margin-bottom: 4px;
+}
+
+.cometchat-change-scope__icon {
+  background-color: #075e54;
+}
+.cometchat-change-scope__icon .cometchat-button {
+  background-color: #075e54;
+}
+.cometchat-change-scope__submit-button .cometchat-button {
+  background-color: #075e54;
+}
+
+.cometchat-message-bubble__header-view {
+  color: #036b29;
+}
+
+.cometchat-group-members .cometchat-group-members__trailing-view-options-admin {
+  color: #fff;
+  background-color: #075e54;
+}
+.cometchat-list__header {
+  border-bottom: none;
+}
+
+.cometchat-conversations__subtitle-typing {
+  color: #128c7e;
+}
+.cometchat-message-header
+  .cometchat-message-header__subtitle.cometchat-message-header__subtitle-typing {
+  color: #128c7e;
+}
+
+.cometchat-message-bubble
+  .cometchat-text-bubble
+  .cometchat-text-bubble__read-more
+  .cometchat-text-bubble__read-less {
+  color: #128c7e;
+}
+
+.cometchat-message-composer {
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  background-color: var(--cometchat-neutral-color-400);
+}
+
+.cometchat-message-composer__input {
+  border: 1px solid var(--cometchat-neutral-color-300);
+  background-color: #fff;
+  border-radius: 20px;
+}
+.cometchat-text-bubble-outgoing .cometchat-text-bubble__read-more,
+.cometchat-text-bubble-outgoing .cometchat-text-bubble__read-less {
+  color: var(--cometchat-neutral-color-600);
+}
+
+.cometchat-audio-bubble-outgoing .cometchat-audio-bubble__body-wave {
+  color: var(--cometchat-neutral-color-1000);
+  /* color: red; */
+}
+
+.cometchat-media-recorder .cometchat-audio-bubble {
+  background: blue;
+}
+
+.cometchat-thread-header__top-bar {
+  width: 100%;
+}
