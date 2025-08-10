@@ -5,9 +5,6 @@ import firebase from "../../firebaseConfig";
 import {
   CometChatNotifications,
   CometChat,
-  NotificationPreferences,
-  MutePreferences,
-  DNDOptions,
 } from "@cometchat/chat-sdk-javascript";
 
 interface NotificationSetting {

@@ -22,8 +22,13 @@ const MuteOverlay: React.FC<MuteOverlayProps> = ({
     CometChat.callExtension("push-notification", "GET", "v2/user-settings")
       .then((response) => {
         console.log("fetched user settings for mute:", response);
-        console.log("1:", response["user-settings"]["chat"]["muted_uids"]);
-        // console.log("3:", response);
+        const responseData = response as { "user-settings": { chat: { muted_uids: string[] } } };
+        if (responseData["user-settings"]?.["chat"]?.["muted_uids"]) {
+          console.log("1:", responseData["user-settings"]["chat"]["muted_uids"]);
+          // Check if current chat is muted
+          const mutedUids = responseData["user-settings"]["chat"]["muted_uids"];
+          setIsMuted(mutedUids.includes(muteChat));
+        }
       })
       .catch((error) => {
         console.log("Error fetching mute settings", error);
