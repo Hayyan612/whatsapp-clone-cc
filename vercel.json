@@ -18,10 +18,5 @@
   ],
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "framework": "vite",
-  "env": {
-    "VITE_APP_ID": "@vite_app_id",
-    "VITE_REGION": "@vite_region", 
-    "VITE_AUTH_KEY": "@vite_auth_key"
-  }
+  "framework": "vite"
 }
