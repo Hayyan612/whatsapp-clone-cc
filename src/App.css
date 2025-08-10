@@ -11,6 +11,14 @@
   align-items: center;
 }
 
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  .app-background {
+    border-radius: 0;
+    background: linear-gradient(to bottom, #00a884 60px, #eae6df 0%);
+  }
+}
+
 .loading-screen-overlay {
   position: fixed;
   top: 0;

@@ -20,6 +20,10 @@ type HomeProps = {
   setGroupId: (groupId: string) => void;
   onAddMemberClick: () => void;
 };
+
+// Mobile view states
+type MobileView = 'conversations' | 'chat' | 'info' | 'threads';
+
 const Home: React.FC<HomeProps> = ({
   onLogout,
   setGroupId,
@@ -32,6 +36,11 @@ const Home: React.FC<HomeProps> = ({
   const [showSettings, setShowSettings] = useState(false);
   const [showWallpaperPreview, setShowWallpaperPreview] = useState(false);
   const [showDoodle, setShowDoodle] = useState(true);
+  
+  // Mobile responsive states
+  const [isMobile, setIsMobile] = useState(false);
+  const [currentMobileView, setCurrentMobileView] = useState<MobileView>('conversations');
+  
   const [selectedWallpaper, setSelectedWallpaper] = useState<{
     id: string;
     color: string;
@@ -46,6 +55,18 @@ const Home: React.FC<HomeProps> = ({
     useState<CometChat.BaseMessage | null>(null);
   const [parentMessageId, setParentMessageId] = useState<number>(0);
   const [showCalls, setShowCalls] = useState(false);
+
+  // Mobile detection and handling
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // const [refreshKey, setRefreshKey] = useState(0);
 
@@ -216,6 +237,11 @@ const Home: React.FC<HomeProps> = ({
   ) => {
     setSelectedConversation(user);
     setShowCalls(false);
+    
+    // On mobile, navigate to chat view when user is selected
+    if (isMobile && user) {
+      setCurrentMobileView('chat');
+    }
   };
 
   const handleToggleDoodle = (value: boolean) => {
@@ -242,17 +268,48 @@ const Home: React.FC<HomeProps> = ({
 
   const toggleChatInfo = () => {
     setShowChatInfo((prev) => !prev);
+    
+    // On mobile, navigate to info view when chat info is opened
+    if (isMobile && !showChatInfo) {
+      setCurrentMobileView('info');
+    } else if (isMobile && showChatInfo) {
+      setCurrentMobileView('chat');
+    }
   };
 
   const onReplyClick = (message: CometChat.BaseMessage) => {
     setParentMessage(message);
     setParentMessageId(message.getId());
     setShowThreads(true);
+    
+    // On mobile, navigate to threads view
+    if (isMobile) {
+      setCurrentMobileView('threads');
+    }
   };
+  
   const onCloseThread = () => {
     setParentMessage(null);
     setParentMessageId(0);
     setShowThreads(false);
+    
+    // On mobile, navigate back to chat view
+    if (isMobile) {
+      setCurrentMobileView('chat');
+    }
+  };
+  
+  // Mobile back navigation function
+  const handleMobileBack = () => {
+    if (currentMobileView === 'chat') {
+      setCurrentMobileView('conversations');
+      setSelectedConversation(null);
+    } else if (currentMobileView === 'info') {
+      setShowChatInfo(false);
+      setCurrentMobileView('chat');
+    } else if (currentMobileView === 'threads') {
+      onCloseThread();
+    }
   };
   const onToggleCalls = () => {
     setShowCalls(true);
@@ -282,7 +339,11 @@ const Home: React.FC<HomeProps> = ({
           onToggleCalls={onToggleCalls}
         />
       </div>
-      <div className="conversations">
+      
+      {/* Conversations Panel */}
+      <div 
+        className={`conversations ${isMobile && currentMobileView !== 'conversations' ? 'mobile-hidden' : ''}`}
+      >
         {showCalls ? (
           <Calls />
         ) : showSettings ? (
@@ -316,7 +377,28 @@ const Home: React.FC<HomeProps> = ({
           />
         ) : null}
       </div>
-      <div className="chat">
+      
+      {/* Chat Panel */}
+      <div 
+        className={`chat ${isMobile && currentMobileView === 'chat' ? 'mobile-visible' : ''}`}
+      >
+        {isMobile && currentMobileView === 'chat' && (
+          <button 
+            onClick={handleMobileBack}
+            style={{
+              position: 'absolute',
+              top: '10px',
+              left: '10px',
+              zIndex: 1000,
+              background: 'none',
+              border: 'none',
+              fontSize: '18px',
+              cursor: 'pointer'
+            }}
+          >
+            ← Back
+          </button>
+        )}
         {showWallpaperPreview ? (
           <WallpaperPreview
             wallpaper={selectedWallpaper}
@@ -331,12 +413,31 @@ const Home: React.FC<HomeProps> = ({
           />
         )}
       </div>
+      
+      {/* Chat Info Panel */}
       {showChatInfo &&
         selectedConversation &&
         selectedConversation instanceof CometChat.Conversation &&
         selectedConversation.getConversationType() ===
           CometChat.RECEIVER_TYPE.GROUP && (
-          <div className="chatInfo">
+          <div className={`chatInfo ${isMobile && currentMobileView === 'info' ? 'mobile-visible' : ''}`}>
+            {isMobile && (
+              <button 
+                onClick={handleMobileBack}
+                style={{
+                  position: 'absolute',
+                  top: '10px',
+                  left: '10px',
+                  zIndex: 1000,
+                  background: 'none',
+                  border: 'none',
+                  fontSize: '18px',
+                  cursor: 'pointer'
+                }}
+              >
+                ← Back
+              </button>
+            )}
             <GroupInfo
               groupChat={
                 selectedConversation.getConversationWith() as CometChat.Group
@@ -351,7 +452,24 @@ const Home: React.FC<HomeProps> = ({
         selectedConversation instanceof CometChat.Conversation &&
         selectedConversation.getConversationType() ===
           CometChat.RECEIVER_TYPE.USER && (
-          <div className="chatInfo">
+          <div className={`chatInfo ${isMobile && currentMobileView === 'info' ? 'mobile-visible' : ''}`}>
+            {isMobile && (
+              <button 
+                onClick={handleMobileBack}
+                style={{
+                  position: 'absolute',
+                  top: '10px',
+                  left: '10px',
+                  zIndex: 1000,
+                  background: 'none',
+                  border: 'none',
+                  fontSize: '18px',
+                  cursor: 'pointer'
+                }}
+              >
+                ← Back
+              </button>
+            )}
             <UserInfo
               user={
                 selectedConversation.getConversationWith() as CometChat.User
@@ -360,8 +478,27 @@ const Home: React.FC<HomeProps> = ({
             />
           </div>
         )}
+        
+      {/* Threads Panel */}
       {showThreads && parentMessage && selectedConversation && (
-        <div className="threads">
+        <div className={`threads ${isMobile && currentMobileView === 'threads' ? 'mobile-visible' : ''}`}>
+          {isMobile && (
+            <button 
+              onClick={handleMobileBack}
+              style={{
+                position: 'absolute',
+                top: '10px',
+                left: '10px',
+                zIndex: 1000,
+                background: 'none',
+                border: 'none',
+                fontSize: '18px',
+                cursor: 'pointer'
+              }}
+            >
+              ← Back
+            </button>
+          )}
           <Threads
             parentMessage={parentMessage}
             parentMessageId={parentMessageId}

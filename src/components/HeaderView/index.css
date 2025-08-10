@@ -8,15 +8,42 @@
   height: 40px;
 }
 
+/* Mobile header adjustments */
+@media (max-width: 768px) {
+  .conversationsHeader {
+    padding: 12px 16px;
+    margin-top: 0;
+    height: 50px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    border-bottom: 1px solid #e0e0e0;
+  }
+}
+
 .headerTitle {
   font-size: 20px;
   font-weight: 800;
   color: #333;
 }
 
+/* Mobile title adjustments */
+@media (max-width: 768px) {
+  .headerTitle {
+    font-size: 18px;
+  }
+}
+
 .headerIcons {
   display: flex;
   gap: 18px;
+}
+
+/* Mobile icons adjustments */
+@media (max-width: 768px) {
+  .headerIcons {
+    gap: 12px;
+  }
 }
 
 .iconButton {
@@ -30,6 +57,16 @@
   align-items: center;
   justify-content: center;
   transition: background-color 0.2s ease;
+}
+
+/* Mobile icon button adjustments */
+@media (max-width: 768px) {
+  .iconButton {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    min-height: 40px;
+  }
 }
 
 .iconButton:hover {

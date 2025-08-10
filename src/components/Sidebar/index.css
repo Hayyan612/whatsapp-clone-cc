@@ -9,12 +9,35 @@
   box-shadow: 1px 0 5px rgba(0, 0, 0, 0.1);
 }
 
+/* Mobile sidebar layout */
+@media (max-width: 768px) {
+  .sidebar {
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding: 8px 16px;
+    height: 60px;
+    box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    border-top: 1px solid #e0e0e0;
+  }
+}
+
 .topSection,
 .bottomSection {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 25px;
+}
+
+/* Mobile sections layout */
+@media (max-width: 768px) {
+  .topSection,
+  .bottomSection {
+    flex-direction: row;
+    gap: 15px;
+  }
 }
 
 .bottomSection {
@@ -24,6 +47,16 @@
   gap: 25px;
   margin-top: auto;
   padding-bottom: 5%;
+}
+
+/* Mobile bottom section adjustments */
+@media (max-width: 768px) {
+  .bottomSection {
+    margin-top: 0;
+    padding-bottom: 0;
+    flex-direction: row;
+    gap: 15px;
+  }
 }
 
 .iconWrapper {
@@ -36,6 +69,14 @@
   border-radius: 50%;
   cursor: pointer;
   transition: background-color 0.2s;
+}
+
+/* Mobile icon wrapper adjustments */
+@media (max-width: 768px) {
+  .iconWrapper {
+    width: 35px;
+    height: 35px;
+  }
 }
 
 .iconWrapper:hover {

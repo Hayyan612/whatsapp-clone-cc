@@ -21,11 +21,43 @@ body,
   --cometchat-extended-primary-color-500: #90cda6;
 }
 
+/* Mobile responsive base styles */
+@media (max-width: 768px) {
+  html,
+  body,
+  #root {
+    font-size: 16px; /* Slightly larger for mobile readability */
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+  }
+  
+  /* Prevent horizontal scrolling on mobile */
+  body {
+    overflow-x: hidden;
+  }
+}
+
+/* Touch-friendly button sizing for mobile */
+@media (max-width: 768px) {
+  button {
+    min-height: 44px; /* Apple's recommended touch target size */
+    min-width: 44px;
+  }
+}
+
 button,
 input,
 textarea {
   font-family: inherit;
   font-size: 14px;
+}
+
+/* Mobile input adjustments */
+@media (max-width: 768px) {
+  input,
+  textarea {
+    font-size: 16px; /* Prevent zoom on iOS */
+  }
 }
 
 a {
@@ -46,6 +78,63 @@ a {
   --cometchat-neutral-color-300: #ffffff; /* WhatsApp white background */
   background-color: #ffffff !important;
   color: #111b21; /* Dark text */
+}
+
+/* Mobile responsive adjustments for CometChat components */
+@media (max-width: 768px) {
+  /* Message bubbles mobile optimization */
+  .cometchat .cometchat-message-bubble {
+    max-width: 85% !important;
+  }
+  
+  .cometchat .cometchat-message-bubble__body {
+    padding: 8px 12px !important;
+    font-size: 14px !important;
+  }
+  
+  /* Message composer mobile optimization */
+  .cometchat .cometchat-message-composer {
+    padding: 8px 12px !important;
+  }
+  
+  .cometchat .cometchat-message-composer__input {
+    font-size: 16px !important; /* Prevent zoom on iOS */
+    padding: 8px 12px !important;
+  }
+  
+  /* Message list mobile optimization */
+  .cometchat .cometchat-message-list {
+    padding: 0 8px !important;
+  }
+  
+  /* Chat header mobile optimization */
+  .cometchat .cometchat-message-header {
+    padding: 12px 16px !important;
+    min-height: 60px !important;
+  }
+  
+  /* Avatar sizing for mobile */
+  .cometchat .cometchat-avatar {
+    width: 36px !important;
+    height: 36px !important;
+  }
+  
+  /* Touch-friendly buttons */
+  .cometchat button {
+    min-height: 44px !important;
+    min-width: 44px !important;
+  }
+  
+  /* Modal/overlay adjustments for mobile */
+  .cometchat .cometchat-modal,
+  .cometchat .cometchat-dialog {
+    margin: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    border-radius: 0 !important;
+  }
 }
 
 .cometchat-text-bubble.cometchat-text-bubble-outgoing
