@@ -13,11 +13,21 @@
   position: relative;
 }
 
-/* Mobile chat container adjustments */
+/* Mobile chat container adjustments - WhatsApp style */
 @media (max-width: 768px) {
   .whatsapp-download-container {
     padding: 16px;
-    height: calc(100vh - 60px); /* Account for bottom navigation */
+    height: 100vh;
+    background-color: #0b141a; /* WhatsApp chat background */
+    color: #e9edef; /* WhatsApp text color */
+  }
+  
+  .whatsapp-download-container h1 {
+    color: #e9edef !important;
+  }
+  
+  .whatsapp-download-container p {
+    color: #8696a0 !important; /* WhatsApp subtitle color */
   }
 }
 

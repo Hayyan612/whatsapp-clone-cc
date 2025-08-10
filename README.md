@@ -9,8 +9,16 @@ A modern WhatsApp clone built with React, TypeScript, Vite, and CometChat's UI K
 - **WhatsApp-like UI**: Familiar and intuitive user interface
 - **Group Chats**: Create and manage group conversations
 - **User Management**: Add/remove users, manage profiles
-- **Responsive Design**: Works seamlessly across devices
+- **📱 Mobile Responsive**: Fully optimized for mobile devices with touch-friendly interface
 - **AI Integration**: Enhanced with Gemini AI capabilities
+
+## 📱 Mobile Features
+
+- **Responsive Design**: Seamlessly adapts from desktop to mobile
+- **Touch-Optimized**: 44px minimum touch targets for better mobile experience
+- **Mobile Navigation**: Bottom navigation bar and panel switching
+- **Smooth Transitions**: Native mobile-like transitions between views
+- **iOS/Android Optimized**: Prevents zoom on input focus, proper viewport handling
 
 ## 🛠️ Tech Stack
 
@@ -57,6 +65,43 @@ npm run dev
 ```
 
 The application will be available at `http://localhost:5173`
+
+### 5. 🔐 Test Login Credentials
+
+To test the application, you can use these pre-configured test users:
+
+**Test User 1:**
+- **UID**: `test-1`
+- **Name**: Test User 1
+
+**Test User 2:**
+- **UID**: `test-2` 
+- **Name**: Test User 2
+
+> **Note**: Simply enter one of these UIDs (test-1 or test-2) in the login form to access the chat interface. You can open the app in two different browser windows/tabs and login with different test users to see real-time messaging in action.
+VITE_AUTH_KEY=your_cometchat_auth_key
+```
+
+### 4. Run the development server
+```bash
+npm run dev
+```
+
+The application will be available at `http://localhost:5173`
+
+### 5. 🔐 Test Login Credentials
+
+To test the application, you can use these pre-configured test users:
+
+**Test User 1:**
+- **UID**: `test-1`
+- **Name**: Test User 1
+
+**Test User 2:**
+- **UID**: `test-2` 
+- **Name**: Test User 2
+
+> **Note**: Simply enter one of these UIDs (test-1 or test-2) in the login form to access the chat interface. You can open the app in two different browser windows/tabs and login with different test users to see real-time messaging in action.
 
 ## 🌐 Deployment
 

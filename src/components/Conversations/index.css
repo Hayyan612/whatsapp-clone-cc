@@ -8,17 +8,44 @@
   position: relative;
 }
 
-/* Mobile conversations container */
+/* Mobile conversations container - WhatsApp style */
 @media (max-width: 768px) {
   .conversationsContainer {
     border-right: none;
-    height: calc(100vh - 60px); /* Account for bottom navigation */
+    height: 100vh;
+    background-color: #111b21; /* WhatsApp dark header */
   }
 }
 
 .conversationsList {
   flex: 1;
   overflow-y: auto;
+}
+
+/* Mobile conversations list - WhatsApp style */
+@media (max-width: 768px) {
+  .conversationsList {
+    background-color: #111b21; /* WhatsApp conversations background */
+  }
+  
+  /* Style the conversation items for mobile WhatsApp look */
+  .conversationsList .cometchat-conversation {
+    background-color: #111b21 !important;
+    border-bottom: 1px solid #2a3942 !important;
+    padding: 12px 16px !important;
+  }
+  
+  .conversationsList .cometchat-conversation:hover {
+    background-color: #2a3942 !important;
+  }
+  
+  .conversationsList .cometchat-conversation * {
+    color: #e9edef !important;
+  }
+  
+  .conversationsList .cometchat-conversation .cometchat-conversation__subtitle {
+    color: #8696a0 !important; /* WhatsApp subtitle color */
+  }
 }
 
 .encryptionFooter {
@@ -53,19 +80,36 @@
   border-bottom: 1px solid #dcdcdc;
 }
 
-/* Mobile header adjustments */
+/* Mobile header - WhatsApp style */
 @media (max-width: 768px) {
   .conversations-header {
     padding: 16px;
+    background-color: #2a3942; /* WhatsApp dark header */
+    border-bottom: none;
     position: sticky;
     top: 0;
     z-index: 10;
+    height: 64px;
+    box-sizing: border-box;
   }
 }
 
 .conversations-header__title {
   font-size: 18px;
   font-weight: 800;
+  color: #111b21;
+}
+
+/* Mobile title - WhatsApp style */
+@media (max-width: 768px) {
+  .conversations-header__title {
+    color: #e9edef; /* WhatsApp light text */
+    font-size: 20px;
+    font-weight: 500;
+  }
+}
+
+.conversations-header__title {
   color: var(--cometchat-text-color-primary);
 }
 

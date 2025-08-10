@@ -82,6 +82,14 @@ a {
 
 /* Mobile responsive adjustments for CometChat components */
 @media (max-width: 768px) {
+  /* WhatsApp mobile theme colors */
+  :root {
+    --mobile-header-bg: #2a3942;
+    --mobile-chat-bg: #0b141a;
+    --mobile-text-primary: #e9edef;
+    --mobile-text-secondary: #8696a0;
+  }
+
   /* Message bubbles mobile optimization */
   .cometchat .cometchat-message-bubble {
     max-width: 85% !important;
@@ -92,25 +100,36 @@ a {
     font-size: 14px !important;
   }
   
-  /* Message composer mobile optimization */
+  /* Message composer mobile optimization - WhatsApp style */
   .cometchat .cometchat-message-composer {
     padding: 8px 12px !important;
+    background-color: #2a3942 !important; /* Dark WhatsApp composer background */
   }
   
   .cometchat .cometchat-message-composer__input {
     font-size: 16px !important; /* Prevent zoom on iOS */
     padding: 8px 12px !important;
+    background-color: #404a53 !important; /* WhatsApp input background */
+    color: #e9edef !important; /* WhatsApp text color */
+    border: none !important;
   }
   
   /* Message list mobile optimization */
   .cometchat .cometchat-message-list {
     padding: 0 8px !important;
+    background-color: #0b141a !important; /* WhatsApp chat background */
   }
   
-  /* Chat header mobile optimization */
+  /* Chat header mobile optimization - WhatsApp style */
   .cometchat .cometchat-message-header {
     padding: 12px 16px !important;
-    min-height: 60px !important;
+    min-height: 64px !important;
+    background-color: #2a3942 !important; /* WhatsApp header */
+    border-bottom: none !important;
+  }
+  
+  .cometchat .cometchat-message-header * {
+    color: #e9edef !important; /* WhatsApp header text */
   }
   
   /* Avatar sizing for mobile */
@@ -134,6 +153,12 @@ a {
     max-width: 100% !important;
     max-height: 100% !important;
     border-radius: 0 !important;
+  }
+  
+  /* Hide desktop elements that don't exist in WhatsApp mobile */
+  .cometchat .cometchat-sidebar,
+  .cometchat .cometchat-nav {
+    display: none !important;
   }
 }
 

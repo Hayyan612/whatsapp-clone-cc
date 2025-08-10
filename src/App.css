@@ -15,7 +15,8 @@
 @media (max-width: 768px) {
   .app-background {
     border-radius: 0;
-    background: linear-gradient(to bottom, #00a884 60px, #eae6df 0%);
+    background: #111b21; /* Solid WhatsApp dark background for mobile */
+    padding: 0;
   }
 }
 
